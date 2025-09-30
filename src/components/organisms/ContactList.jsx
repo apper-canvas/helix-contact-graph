@@ -22,8 +22,6 @@ const ContactList = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [companyFilter, setCompanyFilter] = useState("");
-  const [tagFilter, setTagFilter] = useState("");
 
   const loadContacts = async () => {
     setLoading(true);
@@ -62,7 +60,7 @@ const ContactList = ({
   };
 
   const { filteredContacts, companies, tags } = useMemo(() => {
-    let filtered = [...contacts];
+let filtered = [...contacts];
     
     // Search filter
     if (searchTerm) {
@@ -77,28 +75,10 @@ const ContactList = ({
       );
     }
     
-    // Company filter
-    if (companyFilter) {
-      filtered = filtered.filter(contact => contact.company === companyFilter);
-    }
-    
-    // Tag filter
-    if (tagFilter) {
-      filtered = filtered.filter(contact => 
-        contact.tags && contact.tags.includes(tagFilter)
-      );
-    }
-    
-    // Extract unique companies and tags
-    const uniqueCompanies = [...new Set(contacts.map(contact => contact.company))].sort();
-    const uniqueTags = [...new Set(contacts.flatMap(contact => contact.tags || []))].sort();
-    
     return {
-      filteredContacts: filtered,
-      companies: uniqueCompanies,
-      tags: uniqueTags
+      filteredContacts: filtered
     };
-  }, [contacts, searchTerm, companyFilter, tagFilter]);
+  }, [contacts, searchTerm]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} onRetry={handleRefresh} />;
@@ -106,7 +86,7 @@ const ContactList = ({
   return (
 <div className="h-full flex flex-col bg-white">
       {/* Search and Filters Header */}
-      <div className="p-6 border-b border-green-200 bg-gradient-to-r from-green-50 to-white">
+<div className="p-6 border-b border-green-200 bg-gradient-to-r from-green-50 to-white">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-bold text-slate-900">Contact Cards</h2>
           <Button
@@ -121,6 +101,14 @@ const ContactList = ({
         </div>
         
         <div className="space-y-4">
+          <Button
+            onClick={() => onEditContact(null)}
+            icon="Plus"
+            className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 shadow-lg hover:shadow-xl justify-start"
+          >
+            Contact
+          </Button>
+          
           <SearchBar
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -128,38 +116,19 @@ const ContactList = ({
             placeholder="Search contacts..."
             className="w-full"
           />
-          
-          <div className="flex gap-3">
-            <FilterDropdown
-              options={companies}
-              value={companyFilter}
-              onChange={setCompanyFilter}
-              placeholder="Filter by company"
-            />
-            <FilterDropdown
-              options={tags}
-              value={tagFilter}
-              onChange={setTagFilter}
-              placeholder="Filter by tag"
-            />
-          </div>
         </div>
         
-        {(searchTerm || companyFilter || tagFilter) && (
+{searchTerm && (
           <div className="mt-4 flex items-center gap-2 text-sm text-slate-600">
             <ApperIcon name="Filter" className="w-4 h-4" />
             <span>
               Showing {filteredContacts.length} of {contacts.length} contacts
             </span>
-            {(searchTerm || companyFilter || tagFilter) && (
+            {searchTerm && (
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => {
-                  setSearchTerm("");
-                  setCompanyFilter("");
-                  setTagFilter("");
-                }}
+                onClick={() => setSearchTerm("")}
                 className="text-primary-600 hover:text-primary-700 p-1 h-auto"
               >
                 Clear filters
@@ -184,12 +153,8 @@ const ContactList = ({
             <Empty
               title="No matches found"
               description="Try adjusting your search terms or filters to find contacts."
-              actionText="Clear Filters"
-              onAction={() => {
-                setSearchTerm("");
-                setCompanyFilter("");
-                setTagFilter("");
-              }}
+actionText="Clear Search"
+              onAction={() => setSearchTerm("")}
               icon="Search"
             />
           )

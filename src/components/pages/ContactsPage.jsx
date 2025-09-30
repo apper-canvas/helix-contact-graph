@@ -83,10 +83,7 @@ return (
             {/* Navigation Menu */}
             <nav className="flex-1 p-4 space-y-2">
               <div className="space-y-1">
-                <div className="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                  Navigation
-                </div>
-                <button className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg shadow-sm">
+<button className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg shadow-sm">
                   <ApperIcon name="Users" className="w-4 h-4" />
                   All Contacts
                 </button>
@@ -94,27 +91,6 @@ return (
                   <ApperIcon name="Star" className="w-4 h-4" />
                   Favorites
                 </button>
-                <button className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-sm font-medium text-slate-700 hover:bg-green-50 rounded-lg transition-colors duration-200">
-                  <ApperIcon name="Building" className="w-4 h-4" />
-                  Companies
-                </button>
-                <button className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-sm font-medium text-slate-700 hover:bg-green-50 rounded-lg transition-colors duration-200">
-                  <ApperIcon name="Tags" className="w-4 h-4" />
-                  Tags
-                </button>
-              </div>
-              
-              <div className="pt-4 border-t border-green-200">
-                <div className="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                  Actions
-                </div>
-                <Button
-                  onClick={() => handleEditContact(null)}
-                  icon="Plus"
-                  className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 shadow-lg hover:shadow-xl justify-start"
-                >
-                  Add New Contact
-                </Button>
               </div>
             </nav>
           </div>
