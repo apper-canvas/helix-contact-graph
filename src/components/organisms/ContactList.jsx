@@ -101,9 +101,10 @@ let filtered = [...contacts];
         </div>
         
         <div className="space-y-4">
-          <Button
+<Button
             onClick={() => onEditContact(null)}
             icon="Plus"
+            size="sm"
             className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 shadow-lg hover:shadow-xl justify-start"
           >
             Contact
@@ -145,8 +146,9 @@ let filtered = [...contacts];
             <Empty
               title="No contacts yet"
               description="Start building your network by adding your first contact."
-              actionText="Add Contact"
+actionText="Add Contact"
               onAction={() => onEditContact(null)}
+              actionSize="sm"
               icon="Users"
             />
           ) : (
