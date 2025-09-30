@@ -8,16 +8,16 @@ import ApperIcon from "@/components/ApperIcon";
 const ContactDetail = ({ contact, onEdit, onClose }) => {
   if (!contact) {
     return (
-      <div className="h-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-white">
+<div className="h-full flex items-center justify-center bg-gradient-to-br from-green-50 to-white">
         <div className="text-center max-w-md mx-auto p-8">
           <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center">
             <ApperIcon name="User" className="w-8 h-8 text-primary-600" />
           </div>
           <h3 className="text-lg font-semibold text-slate-900 mb-2">
-            Select a Contact
+            Select a Contact Card
           </h3>
           <p className="text-slate-600">
-            Choose a contact from the list to view their details
+            Click on a contact card from the grid to view their detailed information
           </p>
         </div>
       </div>
@@ -41,7 +41,7 @@ const ContactDetail = ({ contact, onEdit, onClose }) => {
   return (
     <div className="h-full bg-white">
       {/* Header */}
-      <div className="p-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+<div className="p-6 border-b border-green-200 bg-gradient-to-r from-green-50 to-white">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-slate-900">Contact Details</h2>
           <div className="flex items-center gap-2">
@@ -204,7 +204,7 @@ const ContactDetail = ({ contact, onEdit, onClose }) => {
             </h4>
             
             <div className="space-y-3">
-              <div className="flex items-center justify-between py-2 px-3 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border border-green-200">
+<div className="flex items-center justify-between py-2 px-3 bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg border border-primary-200">
                 <div className="flex items-center gap-3">
                   <ApperIcon name="Plus" className="w-4 h-4 text-green-600" />
                   <span className="text-sm font-medium text-green-800">
@@ -216,8 +216,8 @@ const ContactDetail = ({ contact, onEdit, onClose }) => {
                 </span>
               </div>
               
-              {contact.updatedAt !== contact.createdAt && (
-                <div className="flex items-center justify-between py-2 px-3 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border border-blue-200">
+{contact.updatedAt !== contact.createdAt && (
+                <div className="flex items-center justify-between py-2 px-3 bg-gradient-to-r from-primary-50 to-primary-100 rounded-lg border border-primary-200">
                   <div className="flex items-center gap-3">
                     <ApperIcon name="Edit" className="w-4 h-4 text-blue-600" />
                     <span className="text-sm font-medium text-blue-800">

@@ -104,11 +104,11 @@ const ContactList = ({
   if (error) return <Error message={error} onRetry={handleRefresh} />;
 
   return (
-    <div className="h-full flex flex-col bg-white">
-      {/* Header */}
-      <div className="p-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+<div className="h-full flex flex-col bg-white">
+      {/* Search and Filters Header */}
+      <div className="p-6 border-b border-green-200 bg-gradient-to-r from-green-50 to-white">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-slate-900">Contacts</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Contact Cards</h2>
           <Button
             onClick={handleRefresh}
             variant="ghost"
@@ -194,17 +194,19 @@ const ContactList = ({
             />
           )
         ) : (
-          <div className="p-6 space-y-4">
-            {filteredContacts.map((contact) => (
-              <ContactCard
-                key={contact.Id}
-                contact={contact}
-                isSelected={selectedContact?.Id === contact.Id}
-                onSelect={onSelectContact}
-                onEdit={onEditContact}
-                onDelete={() => handleDeleteContact(contact)}
-              />
-            ))}
+<div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {filteredContacts.map((contact) => (
+                <ContactCard
+                  key={contact.Id}
+                  contact={contact}
+                  isSelected={selectedContact?.Id === contact.Id}
+                  onSelect={onSelectContact}
+                  onEdit={onEditContact}
+                  onDelete={() => handleDeleteContact(contact)}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>

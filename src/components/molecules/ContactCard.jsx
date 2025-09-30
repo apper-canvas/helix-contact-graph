@@ -29,8 +29,8 @@ const ContactCard = ({
 
   return (
     <div
-      className={cn(
-        "p-6 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer group",
+className={cn(
+        "p-6 bg-white rounded-xl border border-green-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer group",
         isSelected && "ring-2 ring-primary-500 border-primary-300 shadow-lg bg-gradient-to-br from-primary-50 to-white",
         "transform hover:scale-[1.02]",
         className
@@ -50,7 +50,7 @@ const ContactCard = ({
             <h3 className="text-lg font-bold text-slate-900 truncate">
               {contact.firstName} {contact.lastName}
             </h3>
-            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0 ml-2">
+<div className="flex items-center gap-1 opacity-100 transition-opacity duration-200 shrink-0 ml-2">
               <Button
                 variant="ghost"
                 size="sm"
@@ -58,7 +58,8 @@ const ContactCard = ({
                   e.stopPropagation();
                   onEdit?.(contact);
                 }}
-                className="p-2 h-auto hover:bg-primary-50 hover:text-primary-600"
+                className="p-2 h-auto hover:bg-primary-50 hover:text-primary-600 border border-green-200"
+                title="Edit Contact"
               >
                 <ApperIcon name="Edit2" className="w-4 h-4" />
               </Button>
@@ -69,7 +70,8 @@ const ContactCard = ({
                   e.stopPropagation();
                   onDelete?.(contact);
                 }}
-                className="p-2 h-auto hover:bg-red-50 hover:text-red-600"
+                className="p-2 h-auto hover:bg-red-50 hover:text-red-600 border border-green-200"
+                title="Delete Contact"
               >
                 <ApperIcon name="Trash2" className="w-4 h-4" />
               </Button>
@@ -80,7 +82,7 @@ const ContactCard = ({
             <p className="text-sm font-medium text-slate-700 truncate">
               {contact.position}
             </p>
-            <p className="text-sm font-semibold text-primary-600 truncate">
+<p className="text-sm font-semibold text-primary-600 truncate">
               {contact.company}
             </p>
           </div>

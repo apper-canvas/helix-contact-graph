@@ -35,7 +35,7 @@ const ContactModal = ({ isOpen, onClose, contact, onSave, isEdit = false }) => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white rounded-t-2xl">
+<div className="flex items-center justify-between p-6 border-b border-green-200 bg-gradient-to-r from-green-50 to-white rounded-t-2xl">
               <h2 className="text-2xl font-bold text-slate-900">
                 {isEdit ? "Edit Contact" : "Add New Contact"}
               </h2>

@@ -129,7 +129,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
   };
 
   return (
-    <div className="max-h-[80vh] overflow-y-auto">
+<div className="max-h-[80vh] overflow-y-auto">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
@@ -152,7 +152,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
         </div>
         
         <FormField
-          label="Email"
+          label="Email Address"
           required
           type="email"
           error={errors.email}
@@ -162,7 +162,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
         />
         
         <FormField
-          label="Phone"
+          label="Phone Number"
           required
           type="tel"
           error={errors.phone}
@@ -173,7 +173,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
-            label="Company"
+            label="Company Name"
             required
             error={errors.company}
             value={formData.company}
@@ -182,7 +182,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
           />
           
           <FormField
-            label="Position"
+            label="Job Title / Position"
             value={formData.position}
             onChange={(e) => handleInputChange("position", e.target.value)}
             placeholder="Enter job title"
@@ -190,20 +190,20 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
         </div>
         
         <FormField
-          label="Photo URL"
+          label="Profile Photo URL"
           value={formData.photo}
           onChange={(e) => handleInputChange("photo", e.target.value)}
-          placeholder="Enter photo URL"
+          placeholder="Enter photo URL (optional)"
         />
         
-        <FormField label="Tags">
+        <FormField label="Contact Tags">
           <div className="space-y-3">
             <div className="flex gap-2">
               <Input
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={handleTagInputKeyPress}
-                placeholder="Add a tag"
+                placeholder="Add a tag (e.g., client, prospect, lead)"
                 className="flex-1"
               />
               <Button
@@ -211,7 +211,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
                 variant="outline"
                 onClick={handleAddTag}
                 disabled={!tagInput.trim()}
-                className="px-4"
+                className="px-4 border-green-200 hover:bg-green-50"
               >
                 <ApperIcon name="Plus" className="w-4 h-4" />
               </Button>
@@ -239,22 +239,23 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
           </div>
         </FormField>
         
-        <FormField label="Notes">
+        <FormField label="Additional Notes">
           <textarea
             value={formData.notes}
             onChange={(e) => handleInputChange("notes", e.target.value)}
-            placeholder="Add notes about this contact"
+            placeholder="Add any additional notes or comments about this contact..."
             rows="4"
-            className="flex w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 resize-vertical"
+            className="flex w-full rounded-lg border border-green-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 focus:border-primary-500 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 resize-vertical"
           />
         </FormField>
         
-        <div className="flex justify-end gap-3 pt-4 border-t border-slate-200">
+<div className="flex justify-end gap-3 pt-4 border-t border-green-200">
           <Button
             type="button"
             variant="outline"
             onClick={onCancel}
             disabled={loading}
+            className="border-green-200 hover:bg-green-50"
           >
             Cancel
           </Button>
@@ -263,7 +264,7 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
             loading={loading}
             disabled={loading}
             icon={loading ? "Loader2" : "Save"}
-            className={loading ? "opacity-75" : ""}
+            className={loading ? "opacity-75" : "bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800"}
           >
             {loading ? "Saving..." : isEdit ? "Update Contact" : "Create Contact"}
           </Button>
