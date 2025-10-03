@@ -87,10 +87,22 @@ className={cn(
             </p>
           </div>
           
-          <div className="space-y-1 mb-4">
+<div className="space-y-1 mb-4">
             <div className="flex items-center gap-2 text-sm text-slate-600">
               <ApperIcon name="Mail" className="w-4 h-4 shrink-0" />
               <span className="truncate">{contact.email}</span>
+              {contact.emailStatus && (
+                <Badge 
+                  variant={
+                    contact.emailStatus === "Send" ? "success" : 
+                    contact.emailStatus === "Not Send" ? "destructive" : 
+                    "default"
+                  }
+                  className="text-xs"
+                >
+                  {contact.emailStatus}
+                </Badge>
+              )}
             </div>
             <div className="flex items-center gap-2 text-sm text-slate-600">
               <ApperIcon name="Phone" className="w-4 h-4 shrink-0" />

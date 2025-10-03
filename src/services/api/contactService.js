@@ -22,8 +22,9 @@ export const contactService = {
   async create(contactData) {
     await delay(400);
     const newContact = {
-      ...contactData,
+...contactData,
       Id: Math.max(...contacts.map(c => c.Id)) + 1,
+      emailStatus: contactData.emailStatus || "New",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -38,10 +39,11 @@ export const contactService = {
       throw new Error("Contact not found");
     }
     
-    const updatedContact = {
+const updatedContact = {
       ...contacts[index],
       ...contactData,
       Id: parseInt(id),
+      emailStatus: contactData.emailStatus || contacts[index].emailStatus || "New",
       updatedAt: new Date().toISOString()
     };
     

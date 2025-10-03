@@ -7,7 +7,7 @@ import Input from "@/components/atoms/Input";
 import ApperIcon from "@/components/ApperIcon";
 
 const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -16,7 +16,8 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
     position: "",
     photo: "",
     tags: [],
-    notes: ""
+    notes: "",
+    emailStatus: "New"
   });
   
   const [tagInput, setTagInput] = useState("");
@@ -34,7 +35,8 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
         position: contact.position || "",
         photo: contact.photo || "",
         tags: contact.tags || [],
-        notes: contact.notes || ""
+notes: contact.notes || "",
+        emailStatus: contact.emailStatus || "New"
       });
     }
   }, [contact]);
@@ -236,6 +238,24 @@ const ContactForm = ({ contact, onSave, onCancel, isEdit = false }) => {
                 ))}
               </div>
             )}
+          </div>
+</FormField>
+
+        <FormField label="Email Status" required>
+          <div className="relative">
+            <select
+              value={formData.emailStatus}
+              onChange={(e) => handleInputChange('emailStatus', e.target.value)}
+              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none pr-10"
+            >
+              <option value="New">New</option>
+              <option value="Send">Send</option>
+              <option value="Not Send">Not Send</option>
+            </select>
+            <ApperIcon 
+              name="ChevronDown" 
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none"
+            />
           </div>
         </FormField>
         

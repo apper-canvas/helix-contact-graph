@@ -108,7 +108,25 @@ const ContactDetail = ({ contact, onEdit, onClose }) => {
                       className="text-primary-600 hover:text-primary-700 font-medium transition-colors duration-150"
                     >
                       {contact.email}
-                    </a>
+</a>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-600">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-50">
+                      <ApperIcon name="Mail" className="w-5 h-5 text-primary-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-slate-500">Email Status</p>
+                      <Badge 
+                        variant={
+                          contact.emailStatus === "Send" ? "success" : 
+                          contact.emailStatus === "Not Send" ? "destructive" : 
+                          "default"
+                        }
+                        className="mt-1"
+                      >
+                        {contact.emailStatus || "New"}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
                 
