@@ -32,14 +32,14 @@ export const contactService = {
     return { ...newContact };
   },
 
-  async update(id, contactData) {
+async update(id, contactData) {
     await delay(350);
     const index = contacts.findIndex(c => c.Id === parseInt(id));
     if (index === -1) {
       throw new Error("Contact not found");
     }
     
-const updatedContact = {
+    const updatedContact = {
       ...contacts[index],
       ...contactData,
       Id: parseInt(id),
@@ -48,6 +48,39 @@ const updatedContact = {
     };
     
     contacts[index] = updatedContact;
+    
+    // Send email notification via Edge function
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const result = await apperClient.functions.invoke(
+        import.meta.env.VITE_SEND_CONTACT_UPDATE_EMAIL,
+        {
+          body: JSON.stringify({
+            contactId: updatedContact.Id,
+            firstName: updatedContact.firstName,
+            lastName: updatedContact.lastName,
+            email: updatedContact.email,
+            company: updatedContact.company,
+            position: updatedContact.position
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (result && !result.success) {
+        console.info(`apper_info: Got an error in this function: ${import.meta.env.VITE_SEND_CONTACT_UPDATE_EMAIL}. The response body is: ${JSON.stringify(result)}.`);
+      }
+    } catch (error) {
+      console.info(`apper_info: Got this error in this function: ${import.meta.env.VITE_SEND_CONTACT_UPDATE_EMAIL}. The error is: ${error.message}`);
+    }
+    
     return { ...updatedContact };
   },
 
